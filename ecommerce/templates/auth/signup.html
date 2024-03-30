@@ -1,0 +1,50 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block style %}
+
+<link href=" {% static "assets/css/signup_style.css" %}" rel="stylesheet" type="text/css" media="all" />
+
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+{% endblock style %}
+
+{% block body %}
+
+	<div class="main-w3layouts wrapper mt-5">
+		<h1>SignUp Form</h1>
+		<div class="main-agileinfo">
+			{% if messages %}
+				{% for message in messages %}
+					<div class=" mx-5 text-center alert alert-{{ message.tags }}" role="alert">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+			<div class="agileits-top">
+				<form action="/auth/signup/" method="post">{% csrf_token %}
+					<input class="text" type="text" name="username" placeholder="Username" required="">
+					<input class="text email" type="email" name="email" placeholder="Email" required="">
+					<input class="text" type="password" name="pass1" placeholder="Password" required="">
+					<input class="text w3lpass" type="password" name="pass2" placeholder="Confirm Password" required="">
+					<input type="submit" value="SIGNUP">
+				</form>
+				<p>Don't have an Account? <a href="/auth/login/"> Login Now!</a></p>
+			</div>
+		</div>
+	
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+
+{% endblock body %}

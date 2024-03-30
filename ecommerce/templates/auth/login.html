@@ -1,0 +1,31 @@
+{% extends "nav.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href=" {% static "assets/css/login_style.css" %}">
+<script>
+    $('.message a').click(function(){
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+     });
+</script>
+{% endblock style %}
+
+{% block body %}
+<div class="login-page">
+    {% if messages %}
+      {% for message in messages %}
+        <div class="text-center alert alert-{{ message.tags }}" role="alert">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    <div class="form">
+      <form class="login-form" action="/auth/login/" method="post">{% csrf_token %}
+        <input type="text" name="username" placeholder="username"/>
+        <input type="password" name="pass" placeholder="password"/>
+        <button>login</button>
+        <p class="message">Not registered? <a href="/auth/signup/">Create an account</a></p>
+        <p class="message">Forgot password? <a href="/auth/request-reset-email/">Reset</a></p>
+      </form>
+    </div>
+  </div>
+{% endblock body %}
